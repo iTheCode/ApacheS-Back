@@ -13,8 +13,8 @@ Back-end en Django Rest Framework para ApacheS
 
 ## Setup
 
-This repo uses npm and Grunt to install dependencies, build the deck, run tests, and run a local web
-server for the content. To get started, run the following commands:
+This repo uses python, django and other sources for server up.
+Dont forget set up the postgresql and change the settings.py.
 
 ```bash
 
