@@ -21,7 +21,9 @@ Dont forget set up the postgresql and change the settings.py.
 $ virtualenv env
 $ source env/bin/activate
 $ pip install django
-$ pip install djangorestframework        
+$ pip install coreapi
+$ pip install psycopg2-binary
+$ pip install djangorestframework       
 $ pip install pip install djangorestframework_jwt        
 $ python manage.py runserver
 ```
