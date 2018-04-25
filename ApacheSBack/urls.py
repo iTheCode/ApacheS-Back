@@ -20,7 +20,7 @@ from django.conf.urls import url, include
 from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view
 from rest_framework.urlpatterns import format_suffix_patterns
-
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from ApacheS import views
 from ApacheSBack.v1.router import api_urlpatterns as api_v1
@@ -33,4 +33,7 @@ urlpatterns = [
     url(r'^schema/$', schema_view),
 
     url(r'^api/v1/', include(api_v1)),
+
+    url(r'^api/v1/auth/obtain_token/', obtain_jwt_token),
+    url(r'^api/v1/auth/refresh_token/', refresh_jwt_token),
 ]
