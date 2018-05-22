@@ -1,1 +1,1 @@
-from corsMiddleware import corsMiddleware
+from ApacheSBack.middleware.corsMiddleware import corsMiddleware
