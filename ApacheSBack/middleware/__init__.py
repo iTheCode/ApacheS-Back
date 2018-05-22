@@ -1,1 +1,0 @@
-from ApacheSBack.middleware.corsMiddleware import corsMiddleware
