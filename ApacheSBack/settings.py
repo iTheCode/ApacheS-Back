@@ -148,3 +148,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 AUTH_USER_MODEL = 'ApacheS.User'
 
 CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ORIGIN_WHITELIST = (
+    '*'
+)
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
