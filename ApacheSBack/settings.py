@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'ApacheSBack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'apaches',
-        'USER': 'apache',
-        'PASSWORD': 'apache',
+        'NAME': 'ApacheS',
+        'USER': 'apaches',
+        'PASSWORD': 'renzofeo',
         'HOST': 'localhost',
         'PORT': '',
     }
