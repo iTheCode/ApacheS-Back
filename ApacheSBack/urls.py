@@ -32,8 +32,8 @@ urlpatterns = [
     url(r'^docs/', include_docs_urls(title='ApacheS API', description='RESTful API for ApacheS')),
     url(r'^schema/$', schema_view),
 
-    url(r'^/v1/', include(api_v1)),
+    url(r'^v1/', include(api_v1)),
 
-    url(r'^/v1/auth/obtain_token/', obtain_jwt_token),
-    url(r'^/v1/auth/refresh_token/', refresh_jwt_token),
+    url(r'^v1/auth/obtain_token/', obtain_jwt_token),
+    url(r'^v1/auth/refresh_token/', refresh_jwt_token),
 ]
