@@ -54,9 +54,9 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
-    'ApacheSBack.middleware.corsMiddleware',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'ApacheSBack.urls'
 
 TEMPLATES = [
