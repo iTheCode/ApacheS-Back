@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'ApacheSBack.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ApacheS',
-        'USER': 'apaches',
-        'PASSWORD': 'renzofeo',
+        'NAME': 'apaches',
+        'USER': 'apache',
+        'PASSWORD': 'apache',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -147,7 +147,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'ApacheS.User'
 
-CORS_ORIGIN_ALLOW_ALL = True 
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     '*'
 )
