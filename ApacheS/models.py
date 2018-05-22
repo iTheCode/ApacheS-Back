@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
+
 # Create your models here.
 
 class User(AbstractUser):
@@ -11,7 +12,6 @@ class Provider(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=50, default='')
     company = models.CharField(max_length=50, default='')
-
     class Meta:
         ordering = ('created',)
 class TypeProducts(models.Model):
