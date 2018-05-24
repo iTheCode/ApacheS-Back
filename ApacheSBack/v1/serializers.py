@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from ApacheS.models import Provider
 from ApacheS.models import User
-from ApacheS.models import TypeProducts
-from ApacheS.models import Products
+from ApacheS.models import TypeProduct
+from ApacheS.models import Product
 from ApacheS.models import Warehouse
 from ApacheS.models import Department
 from ApacheS.models import Province
@@ -14,10 +14,10 @@ from ApacheS.models import Purchase
 from ApacheS.models import Client
 from ApacheS.models import Sale
 from ApacheS.models import DetailSale
-from ApacheS.models import PurcharseDetails
- 
+from ApacheS.models import PurcharseDetail
+
 class UserSerializer(serializers.ModelSerializer):
- 
+
     def create(self, validated_data):
         return User.objects.create(**validated_data)
 
@@ -47,10 +47,10 @@ class ProviderSerializer(serializers.ModelSerializer):
         model = Provider
         fields = ('id', 'name', 'company')
 
-class TypeProductsSerializer(serializers.ModelSerializer):
+class TypeProductSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
-        return TypeProducts.objects.create(**validated_data)
+        return TypeProduct.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         for field in validated_data:
@@ -58,13 +58,13 @@ class TypeProductsSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     class Meta:
-        model = TypeProducts
-        fields = ('id', 'typeproducts')                        
+        model = TypeProduct
+        fields = ('id', 'typeproduct')
 
-class ProductsSerializer(serializers.ModelSerializer):
-    
+class ProductSerializer(serializers.ModelSerializer):
+
     def create(self, validated_data):
-        return Products.objects.create(**validated_data)
+        return Product.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         for field in validated_data:
@@ -72,8 +72,8 @@ class ProductsSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     class Meta:
-        model = Products
-        fields = ('id', 'type_products', 'created', 'product_name', 'description')  
+        model = Product
+        fields = ('id', 'type_product', 'created', 'product_name', 'description')
 
 class WarehouseSerializer(serializers.ModelSerializer):
 
@@ -87,7 +87,7 @@ class WarehouseSerializer(serializers.ModelSerializer):
         return instance
     class Meta:
         model = Warehouse
-        fields = ('id', 'products', 'created', 'total_quantity')  
+        fields = ('id', 'product', 'created', 'total_quantity')
 
 class DepartmentSerializer(serializers.ModelSerializer):
 
@@ -96,12 +96,12 @@ class DepartmentSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         for field in validated_data:
-                instance.__setattr__(field, validated_data.get(field)) 
+                instance.__setattr__(field, validated_data.get(field))
         instance.save()
         return instance
     class Meta:
         model = Department
-        fields = ('id', 'name_department')       
+        fields = ('id', 'name_department')
 
 class ProvinceSerializer(serializers.ModelSerializer):
 
@@ -113,9 +113,9 @@ class ProvinceSerializer(serializers.ModelSerializer):
                 instance.__setattr__(field, validated_data.get(field))
         instance.save()
         return instance
-    class Meta: 
+    class Meta:
         model = Province
-        fields = ('id', 'department', 'name_province')  
+        fields = ('id', 'department', 'name_province')
 
 class DistrictSerializer(serializers.ModelSerializer):
 
@@ -154,7 +154,7 @@ class LocationSerializer(serializers.ModelSerializer):
                 instance.__setattr__(field, validated_data.get(field))
         instance.save()
         return instance
-    class Meta: 
+    class Meta:
         model = Location
         fields = ('id', 'company', 'department', 'address')
 
@@ -167,7 +167,7 @@ class SellerSerializer(serializers.ModelSerializer):
                 instance.__setattr__(field, validated_data.get(field))
         instance.save()
         return instance
-    class Meta: 
+    class Meta:
         model = Seller
         fields = ('id', 'location', 'first_name', 'last_name', 'dni', 'phone')
 
@@ -179,7 +179,7 @@ class PurchaseSerializer(serializers.ModelSerializer):
         for field in validated_data:
                 instance.__setattr__(field, validated_data.get(field))
         instance.save()
-        return instance 
+        return instance
     class Meta:
         model = Purchase
         fields = ('id', 'seller', 'provider', 'department', 'date_order', 'date_delivery', 'amount', 'state','address', 'proof_of_payment')
@@ -221,11 +221,11 @@ class DetailSaleSerializer(serializers.ModelSerializer):
         return instance
     class Meta:
         model = DetailSale
-        fields = ('id', 'sale', 'products', 'quantity', 'price', 'discount')
+        fields = ('id', 'sale', 'product', 'quantity', 'price', 'discount')
 
-class PurcharseDetailsSerializer(serializers.ModelSerializer):
+class PurcharseDetailSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
-        return PurcharseDetails.objects.create(**validated_data)
+        return PurcharseDetail.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         for field in validated_data:
@@ -233,5 +233,5 @@ class PurcharseDetailsSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
     class Meta:
-        model = PurcharseDetails
-        fields = ('id', 'purchase', 'products', 'quantity', 'price')
+        model = PurcharseDetail
+        fields = ('id', 'purchase', 'product', 'quantity', 'price')

@@ -14,16 +14,16 @@ class Provider(models.Model):
     company = models.CharField(max_length=50, default='')
     class Meta:
         ordering = ('created',)
-class TypeProducts(models.Model):
+class TypeProduct(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    typeproducts = models.CharField(max_length=50, default='')
-class Products(models.Model):
-    type_products = models.ForeignKey(TypeProducts, null=False,  on_delete=models.CASCADE)
+    typeproduct = models.CharField(max_length=50, default='')
+class Product(models.Model):
+    type_product = models.ForeignKey(TypeProduct, null=False,  on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, null=False)
     product_name = models.CharField(max_length=100, default='', null=False)
     description = models.TextField()
 class Warehouse(models.Model):
-    products = models.ForeignKey(Products, null=False, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     total_quantity = models.IntegerField(null=False)
 class Department(models.Model):
@@ -57,6 +57,7 @@ class Purchase(models.Model):
     state = models.CharField(max_length=25, null=False)
     address = models.TextField(null=False)
     proof_of_payment = models.CharField(max_length=25, null=False)
+    number_purchase = models.IntegerField(null=False)
 class Client(models.Model):
     first_name = models.CharField(max_length=100, null=False)
     last_name = models.CharField(max_length=100, null=False)
@@ -72,14 +73,17 @@ class Sale(models.Model):
     amount = models.FloatField(null=False)
     state = models.CharField(max_length=25, null=False)
     address = models.TextField(null=False)
+    number_sale = models.IntegerField(null=False)
 class DetailSale(models.Model):
     sale = models.ForeignKey(Sale, null=False, on_delete=models.CASCADE)
-    products = models.ForeignKey(Products, null=False, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False)
     price = models.FloatField(null=False)
     discount = models.FloatField()
-class PurcharseDetails(models.Model):
+    igv = models.FloatField()
+class PurcharseDetail(models.Model):
     purchase = models.ForeignKey(Purchase, null=False, on_delete=models.CASCADE)
-    products = models.ForeignKey(Products, null=False, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False)
     price = models.FloatField(null=False)
+    igv = models.FloatField()
