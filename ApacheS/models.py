@@ -12,8 +12,10 @@ class Provider(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=50, default='')
     company = models.CharField(max_length=50, default='')
-    class Meta:
-        ordering = ('created',)
+    first_name = models.CharField(max_length=100, null=False)
+    last_name = models.CharField(max_length=100, null=False)
+    dni = models.IntegerField(null=False)
+    phone = models.IntegerField(null=False)
 class TypeProduct(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     typeproduct = models.CharField(max_length=50, default='')
@@ -21,7 +23,11 @@ class Product(models.Model):
     type_product = models.ForeignKey(TypeProduct, null=False,  on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, null=False)
     product_name = models.CharField(max_length=100, default='', null=False)
+    quantity = models.IntegerField(null=False)
     description = models.TextField()
+    unit_price_sale = models.FloatField(null=False)
+    unit_price_purchase = models.FloatField(null=False)
+    igv = models.FloatField()
 class Warehouse(models.Model):
     product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
@@ -56,8 +62,9 @@ class Purchase(models.Model):
     amount = models.FloatField(null=False)
     state = models.CharField(max_length=25, null=False)
     address = models.TextField(null=False)
-    proof_of_payment = models.CharField(max_length=25, null=False)
+    payment_type = models.CharField(max_length=25, null=False)
     number_purchase = models.IntegerField(null=False)
+    igv = models.FloatField()
 class Client(models.Model):
     first_name = models.CharField(max_length=100, null=False)
     last_name = models.CharField(max_length=100, null=False)
@@ -67,6 +74,7 @@ class Sale(models.Model):
     seller = models.ForeignKey(Seller, null=False, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, null=False, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, null=False, on_delete=models.CASCADE)
+    payment_type = models.CharField(max_length=25, null=False)
     date_order = models.DateField(null=False)
     date_delivery = models.DateField(null=False)
     cancellation_date = models.DateField(null=False)
@@ -74,6 +82,7 @@ class Sale(models.Model):
     state = models.CharField(max_length=25, null=False)
     address = models.TextField(null=False)
     number_sale = models.IntegerField(null=False)
+    igv = models.FloatField()
 class DetailSale(models.Model):
     sale = models.ForeignKey(Sale, null=False, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, null=False, on_delete=models.CASCADE)
