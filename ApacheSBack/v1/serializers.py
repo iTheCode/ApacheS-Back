@@ -45,7 +45,7 @@ class ProviderSerializer(serializers.ModelSerializer):
         return instance
     class Meta:
         model = Provider
-        fields = ('id', 'name', 'company')
+        fields = ('id', 'name', 'company', 'first_name', 'last_name', 'dni', 'phone')
 
 class TypeProductSerializer(serializers.ModelSerializer):
 
@@ -73,7 +73,7 @@ class ProductSerializer(serializers.ModelSerializer):
         return instance
     class Meta:
         model = Product
-        fields = ('id', 'type_product', 'created', 'product_name', 'description')
+        fields = ('id', 'created', 'type_product', 'product_name', 'quantity', 'description', 'unit_price_sale', 'unit_price_purchase', 'igv')
 
 class WarehouseSerializer(serializers.ModelSerializer):
 
@@ -182,7 +182,7 @@ class PurchaseSerializer(serializers.ModelSerializer):
         return instance
     class Meta:
         model = Purchase
-        fields = ('id', 'seller', 'provider', 'department', 'date_order', 'date_delivery', 'amount', 'state','address', 'proof_of_payment')
+        fields = ('id', 'seller', 'provider', 'department', 'date_order', 'date_delivery', 'amount', 'state','address', 'payment_type', 'igv')
 
 class ClientSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
@@ -208,7 +208,7 @@ class SaleSerializer(serializers.ModelSerializer):
         return instance
     class Meta:
         model = Sale
-        fields = ('id', 'seller', 'client', 'department', 'date_order', 'date_delivery', 'cancellation_date', 'amount', 'state', 'address')
+        fields = ('id', 'seller', 'client', 'department', 'date_order', 'date_delivery', 'cancellation_date', 'amount', 'state', 'address', 'igv')
 
 class DetailSaleSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
