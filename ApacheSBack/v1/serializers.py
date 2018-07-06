@@ -182,7 +182,7 @@ class PurchaseSerializer(serializers.ModelSerializer):
         return instance
     class Meta:
         model = Purchase
-        fields = ('id', 'seller', 'provider', 'department', 'date_order', 'date_delivery', 'amount', 'state','address', 'payment_type', 'igv')
+        fields = ('id', 'seller', 'provider', 'department', 'date_delivery', 'amount', 'state','address', 'payment_type', 'igv')
 
 class ClientSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
